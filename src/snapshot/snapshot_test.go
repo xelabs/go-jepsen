@@ -1,5 +1,5 @@
 /*
- * benchyou
+ * go-jepsen
  * xelabs.org
  *
  * Copyright (c) XeLabs
