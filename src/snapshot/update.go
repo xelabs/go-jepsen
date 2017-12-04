@@ -20,6 +20,7 @@ import (
 	"xworker"
 )
 
+// Update tuple.
 type Update struct {
 	stop     bool
 	conf     *xcommon.Conf
@@ -28,6 +29,7 @@ type Update struct {
 	requests uint64
 }
 
+// NewUpdate creates the new update handler.
 func NewUpdate(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	return &Update{
 		conf:    conf,
@@ -35,6 +37,7 @@ func NewUpdate(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	}
 }
 
+// Run used to start the worker.
 func (update *Update) Run() {
 	threads := len(update.workers)
 	for i := 0; i < threads; i++ {
@@ -43,11 +46,13 @@ func (update *Update) Run() {
 	}
 }
 
+// Stop used to stop the worker.
 func (update *Update) Stop() {
 	update.stop = true
 	update.lock.Wait()
 }
 
+// Rows returns the rows number updated.
 func (update *Update) Rows() uint64 {
 	return atomic.LoadUint64(&update.requests)
 }
@@ -77,7 +82,7 @@ func (update *Update) Update(worker *xworker.Worker, num int, id int) {
 		if nsec < worker.M.WMin {
 			worker.M.WMin = nsec
 		}
-		worker.M.WNums += uint64(update.conf.Tables_size)
+		worker.M.WNums += uint64(update.conf.TablesSize)
 		atomic.AddUint64(&update.requests, 1)
 	}
 	update.lock.Done()

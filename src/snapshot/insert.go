@@ -19,6 +19,7 @@ import (
 	"xworker"
 )
 
+// Insert tuple.
 type Insert struct {
 	stop     bool
 	conf     *xcommon.Conf
@@ -27,6 +28,7 @@ type Insert struct {
 	requests uint64
 }
 
+// NewInsert creates new insert handler.
 func NewInsert(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	return &Insert{
 		conf:    conf,
@@ -34,6 +36,7 @@ func NewInsert(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	}
 }
 
+// Run used to start the worker.
 func (insert *Insert) Run() {
 	threads := len(insert.workers)
 	for i := 0; i < threads; i++ {
@@ -42,18 +45,21 @@ func (insert *Insert) Run() {
 	}
 }
 
+// Stop used to stop the worker.
 func (insert *Insert) Stop() {
 	insert.stop = true
 	insert.lock.Wait()
 }
 
+// Rows returns the rows number inserted.
 func (insert *Insert) Rows() uint64 {
 	return atomic.LoadUint64(&insert.requests)
 }
 
+// Insert used to execute the insert operation.
 func (insert *Insert) Insert(worker *xworker.Worker, num int, id int) {
 	session := worker.S
-	max := int(insert.conf.Tables_size)
+	max := int(insert.conf.TablesSize)
 	rows := make([]string, 0, 256)
 	for i := 0; i < max; i++ {
 		rows = append(rows, fmt.Sprintf("(%v, 0)", i))

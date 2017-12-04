@@ -10,18 +10,20 @@ import (
 	"github.com/XeLabs/go-mysqlstack/xlog"
 )
 
+// MockConf creates a new mock of conf.
 func MockConf(addr string) *Conf {
 	host, sport, _ := net.SplitHostPort(addr)
 	port, _ := strconv.Atoi(sport)
 
 	return &Conf{
-		Mysql_host:  host,
-		Mysql_port:  port,
-		Mysql_user:  "mock",
-		Max_request: 16,
+		MysqlHost:  host,
+		MysqlPort:  port,
+		MysqlUser:  "mock",
+		MaxRequest: 16,
 	}
 }
 
+// MockMySQL creates a new mysql mock.
 func MockMySQL() (*driver.Listener, func()) {
 	result1 := &sqltypes.Result{}
 	result2 := &sqltypes.Result{

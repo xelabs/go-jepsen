@@ -15,14 +15,17 @@ import (
 	"xworker"
 )
 
+// Table tuple.
 type Table struct {
 	workers []xworker.Worker
 }
 
+// NewTable creates a new table handler.
 func NewTable(workers []xworker.Worker) *Table {
 	return &Table{workers}
 }
 
+// Prepare used to prepare the database and table.
 func (t *Table) Prepare() {
 	session := t.workers[0].S
 	engine := t.workers[0].E
@@ -44,6 +47,7 @@ func (t *Table) Prepare() {
 	}
 }
 
+// Cleanup used to cleanup the table.
 func (t *Table) Cleanup() {
 	session := t.workers[0].S
 	sql := "DROP TABLE IF EXISTS jepsen.jepsen_si"

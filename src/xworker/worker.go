@@ -17,6 +17,7 @@ import (
 	"github.com/XeLabs/go-mysqlstack/driver"
 )
 
+// Metric tuple.
 type Metric struct {
 	WNums  uint64
 	WCosts uint64
@@ -29,6 +30,7 @@ type Metric struct {
 	QErrs  uint64
 }
 
+// Worker tuple.
 type Worker struct {
 	// session
 	S driver.Conn
@@ -43,23 +45,25 @@ type Worker struct {
 	XID string
 }
 
+// CreateWorkers creates new workers.
 func CreateWorkers(conf *xcommon.Conf, threads int) []Worker {
 	var workers []Worker
 	for i := 0; i < threads; i++ {
-		conn, err := driver.NewConn(conf.Mysql_user, conf.Mysql_password, fmt.Sprintf("%s:%d", conf.Mysql_host, conf.Mysql_port), "", "utf8")
+		conn, err := driver.NewConn(conf.MysqlUser, conf.MysqlPassword, fmt.Sprintf("%s:%d", conf.MysqlHost, conf.MysqlPort), "", "utf8")
 		if err != nil {
 			log.Panicf("create.worker.error:%v", err)
 		}
 		workers = append(workers, Worker{
 			S: conn,
 			M: &Metric{},
-			E: conf.Mysql_table_engine,
+			E: conf.MysqlTableEngine,
 		},
 		)
 	}
 	return workers
 }
 
+// AllWorkersMetric used to get the all workers metrics.
 func AllWorkersMetric(workers []Worker) *Metric {
 	all := &Metric{}
 	for _, worker := range workers {
@@ -86,10 +90,10 @@ func AllWorkersMetric(workers []Worker) *Metric {
 			all.QMin = worker.M.QMin
 		}
 	}
-
 	return all
 }
 
+// StopWorkers used to stop all the workers.
 func StopWorkers(workers []Worker) {
 	for _, worker := range workers {
 		worker.S.Close()

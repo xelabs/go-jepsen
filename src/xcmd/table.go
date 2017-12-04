@@ -17,6 +17,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// NewPrepareCommand creates new cmd.
 func NewPrepareCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "prepare",
@@ -40,13 +41,14 @@ func prepareCommandFn(cmd *cobra.Command, args []string) {
 	table.Prepare()
 
 	// prepare datas.
-	fmt.Printf("prepare.the.datas[%d].for.table.jepsen_si...\n", conf.Tables_size)
+	fmt.Printf("prepare.the.datas[%d].for.table.jepsen_si...\n", conf.TablesSize)
 	iworkers := xworker.CreateWorkers(conf, 1)
 	insert := snapshot.NewInsert(conf, iworkers)
 	insert.Run()
 	insert.Stop()
 }
 
+// NewCleanupCommand creates new cmd.
 func NewCleanupCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "cleanup",

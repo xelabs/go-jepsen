@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// MockInitFlags creates a new mock of init.
 func MockInitFlags(cmd *cobra.Command, addr string) {
 	host, sport, _ := net.SplitHostPort(addr)
 	port, _ := strconv.Atoi(sport)

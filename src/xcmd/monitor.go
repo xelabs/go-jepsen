@@ -18,6 +18,7 @@ import (
 	"xworker"
 )
 
+// Monitor tuple.
 type Monitor struct {
 	conf    *xcommon.Conf
 	workers []xworker.Worker
@@ -25,6 +26,7 @@ type Monitor struct {
 	seconds uint64
 }
 
+// NewMonitor creates the new monitor.
 func NewMonitor(conf *xcommon.Conf, workers []xworker.Worker) *Monitor {
 	return &Monitor{
 		conf:    conf,
@@ -33,6 +35,7 @@ func NewMonitor(conf *xcommon.Conf, workers []xworker.Worker) *Monitor {
 	}
 }
 
+// Start used to start the monitor.
 func (m *Monitor) Start() {
 	w := tabwriter.NewWriter(os.Stdout, 0, 8, 0, '\t', 0)
 	go func() {
@@ -61,6 +64,7 @@ func (m *Monitor) Start() {
 	}()
 }
 
+// Stop used to stop the monitor.
 func (m *Monitor) Stop() {
 	m.ticker.Stop()
 	xworker.StopWorkers(m.workers)

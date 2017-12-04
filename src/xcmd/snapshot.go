@@ -13,6 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// NewSnapshotCommand creates new cmd.
 func NewSnapshotCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "snapshot",

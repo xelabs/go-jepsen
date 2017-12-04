@@ -9,15 +9,16 @@
 
 package xcommon
 
+// Conf tuple.
 type Conf struct {
 	QThreads           int
 	UThreads           int
-	Mysql_host         string
-	Mysql_user         string
-	Mysql_password     string
-	Mysql_port         int
-	Mysql_table_engine string
-	Max_time           int
-	Max_request        uint64
-	Tables_size        int
+	MysqlHost         string
+	MysqlUser         string
+	MysqlPassword     string
+	MysqlPort         int
+	MysqlTableEngine string
+	MaxTime           int
+	MaxRequest        uint64
+	TablesSize        int
 }

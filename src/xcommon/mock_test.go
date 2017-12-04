@@ -22,7 +22,7 @@ func TestQuery(t *testing.T) {
 	defer cleanup()
 	conf := MockConf(mysql.Addr())
 
-	client, err := driver.NewConn(conf.Mysql_user, conf.Mysql_password, fmt.Sprintf("%s:%d", conf.Mysql_host, conf.Mysql_port), "", "utf8")
+	client, err := driver.NewConn(conf.MysqlUser, conf.MysqlPassword, fmt.Sprintf("%s:%d", conf.MysqlHost, conf.MysqlPort), "", "utf8")
 	assert.Nil(t, err)
 
 	_, err = client.Query("drop table t1")

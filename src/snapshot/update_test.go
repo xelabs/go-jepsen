@@ -23,7 +23,7 @@ func TestUpdate(t *testing.T) {
 	defer cleanup()
 
 	conf := xcommon.MockConf(mysql.Addr())
-	conf.Max_request = 1
+	conf.MaxRequest = 1
 	workers := xworker.CreateWorkers(conf, 1)
 	assert.NotNil(t, workers)
 

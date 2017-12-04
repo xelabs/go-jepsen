@@ -21,35 +21,35 @@ import (
 func parseConf(cmd *cobra.Command) (conf *xcommon.Conf, err error) {
 	conf = &xcommon.Conf{}
 
-	if conf.Mysql_host, err = cmd.Flags().GetString("mysql-host"); err != nil {
+	if conf.MysqlHost, err = cmd.Flags().GetString("mysql-host"); err != nil {
 		return
 	}
 
-	if conf.Mysql_user, err = cmd.Flags().GetString("mysql-user"); err != nil {
+	if conf.MysqlUser, err = cmd.Flags().GetString("mysql-user"); err != nil {
 		return
 	}
 
-	if conf.Mysql_password, err = cmd.Flags().GetString("mysql-password"); err != nil {
+	if conf.MysqlPassword, err = cmd.Flags().GetString("mysql-password"); err != nil {
 		return
 	}
 
-	if conf.Mysql_port, err = cmd.Flags().GetInt("mysql-port"); err != nil {
+	if conf.MysqlPort, err = cmd.Flags().GetInt("mysql-port"); err != nil {
 		return
 	}
 
-	if conf.Mysql_table_engine, err = cmd.Flags().GetString("mysql-table-engine"); err != nil {
+	if conf.MysqlTableEngine, err = cmd.Flags().GetString("mysql-table-engine"); err != nil {
 		return
 	}
 
-	if conf.Tables_size, err = cmd.Flags().GetInt("table-size"); err != nil {
+	if conf.TablesSize, err = cmd.Flags().GetInt("table-size"); err != nil {
 		return
 	}
 
-	if conf.Max_time, err = cmd.Flags().GetInt("max-time"); err != nil {
+	if conf.MaxTime, err = cmd.Flags().GetInt("max-time"); err != nil {
 		return
 	}
 
-	if conf.Max_request, err = cmd.Flags().GetUint64("max-request"); err != nil {
+	if conf.MaxRequest, err = cmd.Flags().GetUint64("max-request"); err != nil {
 		return
 	}
 	return
@@ -79,10 +79,10 @@ func startSnapshotTest(conf *xcommon.Conf) {
 				done <- true
 			}
 		}
-	}(conf.Max_request, snapshot.Query(), snapshot.Update())
+	}(conf.MaxRequest, snapshot.Query(), snapshot.Update())
 
 	select {
-	case <-time.After(time.Duration(conf.Max_time) * time.Second):
+	case <-time.After(time.Duration(conf.MaxTime) * time.Second):
 	case <-done:
 	}
 

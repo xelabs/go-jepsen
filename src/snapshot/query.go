@@ -18,6 +18,7 @@ import (
 	"xworker"
 )
 
+// Query tuple.
 type Query struct {
 	stop     bool
 	conf     *xcommon.Conf
@@ -26,6 +27,7 @@ type Query struct {
 	requests uint64
 }
 
+// NewQuery creates a new query handler.
 func NewQuery(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	return &Query{
 		conf:    conf,
@@ -33,6 +35,7 @@ func NewQuery(conf *xcommon.Conf, workers []xworker.Worker) xworker.Handler {
 	}
 }
 
+// Run used to start the worker.
 func (q *Query) Run() {
 	threads := len(q.workers)
 	for i := 0; i < threads; i++ {
@@ -41,11 +44,13 @@ func (q *Query) Run() {
 	}
 }
 
+// Stop used to stop the worker.
 func (q *Query) Stop() {
 	q.stop = true
 	q.lock.Wait()
 }
 
+// Rows returns the rows number queried.
 func (q *Query) Rows() uint64 {
 	return atomic.LoadUint64(&q.requests)
 }
