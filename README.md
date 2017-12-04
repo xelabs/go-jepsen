@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/XeLabs/go-jepsen.svg?branch=master)](https://travis-ci.org/XeLabs/go-jepsen) [![codecov.io](https://codecov.io/gh/XeLabs/go-jepsen/graphs/badge.svg)](https://codecov.io/gh/XeLabs/go-jepsen/branch/master)
+[![Build Status](https://travis-ci.org/XeLabs/go-jepsen.svg?branch=master)](https://travis-ci.org/XeLabs/go-jepsen) [![Go Report Card](https://goreportcard.com/badge/github.com/XeLabs/go-jepsen)](https://goreportcard.com/report/github.com/XeLabs/go-jepsen) [![codecov.io](https://codecov.io/gh/XeLabs/go-jepsen/graphs/badge.svg)](https://codecov.io/gh/XeLabs/go-jepsen/branch/master)
 
 ## About
 

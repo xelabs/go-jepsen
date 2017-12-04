@@ -26,8 +26,8 @@ var (
 	mysqlPassword    string
 	mysqlTableEngine string
 	maxTime          int
-	maxRequest      uint64
-	tableSize       int
+	maxRequest       uint64
+	tableSize        int
 )
 
 var (
