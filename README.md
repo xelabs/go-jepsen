@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/XeLabs/go-jepsen.svg?branch=master)](https://travis-ci.org/XeLabs/go-jepsen) [![Go Report Card](https://goreportcard.com/badge/github.com/XeLabs/go-jepsen)](https://goreportcard.com/report/github.com/XeLabs/go-jepsen) [![codecov.io](https://codecov.io/gh/XeLabs/go-jepsen/graphs/badge.svg)](https://codecov.io/gh/XeLabs/go-jepsen/branch/master)
+[![Build Status](https://travis-ci.org/xelabs/go-jepsen.svg?branch=master)](https://travis-ci.org/xelabs/go-jepsen) [![Go Report Card](https://goreportcard.com/badge/github.com/xelabs/go-jepsen)](https://goreportcard.com/report/github.com/xelabs/go-jepsen) [![codecov.io](https://codecov.io/gh/xelabs/go-jepsen/graphs/badge.svg)](https://codecov.io/gh/xelabs/go-jepsen/branch/master)
 
-## About
+## go-jepsen
 
 go-jepsen is a toolset for distributed systems verification(MySQL protocol only), now supports:
 
@@ -9,9 +9,9 @@ go-jepsen is a toolset for distributed systems verification(MySQL protocol only)
 ## Build
 
 ```
-$git clone https://github.com/XeLabs/go-jepsen
+$git clone https://github.com/xelabs/go-jepsen
 $cd go-jepsen
-$make
+$make build
 $./bin/jepsen -h
 ```
 
@@ -85,3 +85,7 @@ Notes:
 If the column of error(s) is not zero, the distributed systems does not satisfy its claims of Snapshot Isolation, reads are inconsistent.
 To find out more about Snapshot Isolation, please visit [Jepsen: MariaDB Galera Cluster](https://aphyr.com/posts/327-jepsen-mariadb-galera-cluster)
 ```
+
+## License
+
+go-jepsen is released under the GPLv3. See LICENSE

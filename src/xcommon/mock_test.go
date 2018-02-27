@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/XeLabs/go-mysqlstack/driver"
+	"github.com/xelabs/go-mysqlstack/driver"
 	"github.com/stretchr/testify/assert"
 )
 
